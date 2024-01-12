@@ -6,8 +6,9 @@ fun main() {
 
     val persistenceManager = PersistenceManager()
     val scanner = Scanner(System.`in`)
+    var `while` = true
 
-    println("Digite 1 para criar uma nova conta, 2 para carregar contas existentes, 3 para remover uma conta:")
+    println("Digite 1 para criar uma nova conta, 2 para carregar contas existentes, 3 para remover uma conta: 4 para encerrar o programa.")
     when (scanner.nextLine()) {
 
         "1" -> {
@@ -24,6 +25,7 @@ fun main() {
             val saldo = scanner.nextLine().toDouble()
 
             val novaConta = Conta(titular, agencia, numero, saldo)
+
 
             // Carrega as contas existentes, se houver
             val contas: MutableList<Conta> = persistenceManager.loadData()?.toMutableList() ?: mutableListOf()
@@ -69,6 +71,10 @@ fun main() {
             } else {
                 println("Conta não encontrada.")
             }
+        }
+        "4" -> {
+            `while` = false
+            println("encerrar programa")
         }
         else -> {
             println("Opção inválida!")
