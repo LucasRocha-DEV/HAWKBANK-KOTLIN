@@ -1,27 +1,9 @@
 package br.com.hawkbank
 
-class Conta {
-    var saldo: Double = 100.0
-    var agencia: Int = 0
-    var numero: Int = 0
-    var titular: String = ""
-
-
-    fun depositar(valor: Double) {
-        saldo += valor
-    }
-
-    fun sacar(valor: Double): Boolean {
-        return if (saldo >= valor) {
-            saldo -= valor
-            println("Saque Bem-sucedido.")
-            true // saque bem-sucedido
-        } else {
-            false
-        }
-    }
+class Conta(var agencia: Int, var numero: Int, var titular: String, var saldo: Double) {
+    constructor() : this(0, 0, "", 0.0)
 
     override fun toString(): String {
-        return "Conta com saldo: $saldo"
+        return "HAWKBANK: Agencia: $agencia Numero: $numero Titular: $titular saldo: $saldo"
     }
 }
