@@ -7,8 +7,9 @@ fun main() {
     val persistenceManager = PersistenceManager()
     val scanner = Scanner(System.`in`)
 
-    println("Digite 1 para criar uma nova conta, 2 para carregar contas existentes:")
+    println("Digite 1 para criar uma nova conta, 2 para carregar contas existentes, 3 para remover uma conta:")
     when (scanner.nextLine()) {
+
         "1" -> {
             println("Digite a agência da conta:")
             val agencia = scanner.nextLine().toInt()
@@ -43,6 +44,28 @@ fun main() {
                 }
             } else {
                 println("Nenhuma conta encontrada.")
+            }
+        }
+        "3" -> {
+            println("Digite o número da conta que deseja remover:")
+            val numeroContaParaRemover = scanner.nextLine().toInt()
+
+            // Carrega as contas existentes
+            val contas: MutableList<Conta> = persistenceManager.loadData()?.toMutableList() ?: mutableListOf()
+
+            // Encontra a conta que corresponde ao número fornecido pelo usuário
+            val contaParaRemover = contas.find { it.numero == numeroContaParaRemover }
+
+            if (contaParaRemover != null) {
+                // Remove a conta da lista
+                contas.remove(contaParaRemover)
+
+                // Salva a lista atualizada
+                persistenceManager.saveData(contas)
+
+                println("Conta removida com sucesso!")
+            } else {
+                println("Conta não encontrada.")
             }
         }
         else -> {
