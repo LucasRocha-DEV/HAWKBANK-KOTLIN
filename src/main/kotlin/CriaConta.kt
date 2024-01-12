@@ -23,7 +23,7 @@ fun main() {
             println("Digite o saldo inicial da conta:")
             val saldo = scanner.nextLine().toDouble()
 
-            val novaConta = Conta(agencia, numero, titular, saldo)
+            val novaConta = Conta(titular, agencia, numero, saldo)
 
             // Carrega as contas existentes, se houver
             val contas: MutableList<Conta> = persistenceManager.loadData()?.toMutableList() ?: mutableListOf()
@@ -47,6 +47,8 @@ fun main() {
             }
         }
         "3" -> {
+            val conta: List<Conta>? = persistenceManager.loadData()
+            println("Contas carregadas: $conta")
             println("Digite o número da conta que deseja remover:")
             val numeroContaParaRemover = scanner.nextLine().toInt()
 

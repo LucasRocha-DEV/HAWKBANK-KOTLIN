@@ -1,9 +1,7 @@
 package br.com.hawkbank
 
-class Conta(var agencia: Int, var numero: Int, var titular: String, var saldo: Double) {
-    constructor() : this(0, 0, "", 0.0)
-
+data class Conta(val titular: String, val agencia: Int, val numero: Int, val saldo: Double) {
     override fun toString(): String {
-        return "HAWKBANK: Agencia: $agencia Numero: $numero Titular: $titular saldo: $saldo"
+        return "Conta(titular='$titular', agencia=$agencia, numero=$numero, saldo=$saldo)"
     }
 }
